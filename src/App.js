@@ -3,17 +3,40 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
-  const [name, setName] = useState('Sharmin')
-  const handleButton = () => {
-    setName('Sumi')
-    console.log(name)
+  const [showEvents, setShowEvents] = useState(true)
+  const [events, setEvents] = useState([
+    { name: 'Naimur Rahman', id: 1 },
+    { name: "React js", id: 2 },
+    { name: "Node js", id: 3 }, {
+      name: "mongodb", id: 4
+    }
+  ]);
+
+  console.log(showEvents)
+  const handleButton = (id) => {
+    setEvents((prevEvents) => {
+      return prevEvents.filter((event) => {
+        return id !== event.id
+      })
+    })
+    console.log(id)
   }
   return (
     <div className="App">
       <h3>React use State Basic</h3>
-      <h5>My Name is {name}</h5>
-      <button onClick={handleButton}>Click me</button>
-    </div>
+      {showEvents && (<div><button onClick={() => setShowEvents(false)}>Hide items</button></div>)}
+      {!showEvents && <div div > <button onClick={() => setShowEvents(true)}>Show</button></div>}
+
+      {
+        showEvents &&
+        events.map((event, index) => (
+          <div key={event.id}>
+            <h2 >{index} - {event.name}</h2>
+            <button onClick={() => { handleButton(event.id) }}>Click me</button>
+          </div>
+        ))
+      }
+    </div >
   );
 }
 
