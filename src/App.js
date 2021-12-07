@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
+import Title from './coponents/Title';
 
 function App() {
   const [showEvents, setShowEvents] = useState(true)
@@ -23,6 +24,7 @@ function App() {
   }
   return (
     <div className="App">
+      <Title />
       <h3>React use State Basic</h3>
       {showEvents && (<div><button onClick={() => setShowEvents(false)}>Hide items</button></div>)}
       {!showEvents && <div div > <button onClick={() => setShowEvents(true)}>Show</button></div>}
